@@ -1,0 +1,26 @@
+﻿CAT BOOST MODEL :
+
+
+*** What is Cat Boost?
+
+
+
+
+CatBoost comes from two words, Categorical Boosting. Where Cat signifies Categorical, and Boost means Boosting. It is a famous ensemble machine learning algorithm based on gradient boosting. This algorithm overtakes many other Boosting algorithms like XGBoost, LightGBM, etc., in various aspects like performance, accuracy, implementation, hyper tuning parameters, and many more. Categorical Boosting goes well with categorical data, but it can also handle numerical and text data features. 
+
+
+Catboost or Categorical Boosting is an open- source boosting library developed by Yandex. In addition to regression and classification , Catboost can be used in ranking , recommendation systems,forecasting and even personal assistants, self-driving cars , and weather prediction .
+
+
+
+
+*** Pros: ***
+1. It can train our model on GPUs that significantly increase the speed of learning.
+2. It gives us great results for categorical data.
+**Cons:**
+1. It performs only better than other algorithms only when we have categorical data
+2. Can perform very bad if the variables are not properly tuned
+***Application of Cat Boost :***
+1 - Weather forecasting: CatBoost improves the accuracy of weather forecasting and also helps in discovering future meteorological elements. We mean temperature, wind, humidity, and many more by accurately forecasting meteorological factors. These features are very critical and are used in many fields.
+2 - Fraud detection: this includes a set of processes that helps to prevent unauthorised access in various business sectors. The sectors include banking, finance, Medicare, etc.
+3 - Sales forecasting: Nowadays, sales forecasting is one of the important technologies in the retail industry. It helps to predict the accuracy of sales of thousands of products and make optimum decisions based on them.
