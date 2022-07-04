@@ -3,23 +3,32 @@
 
 *** What is Cat Boost?
 
-
-
-
 CatBoost comes from two words, Categorical Boosting. Where Cat signifies Categorical, and Boost means Boosting. It is a famous ensemble machine learning algorithm based on gradient boosting. This algorithm overtakes many other Boosting algorithms like XGBoost, LightGBM, etc., in various aspects like performance, accuracy, implementation, hyper tuning parameters, and many more. Categorical Boosting goes well with categorical data, but it can also handle numerical and text data features. 
 
 
 Catboost or Categorical Boosting is an open- source boosting library developed by Yandex. In addition to regression and classification , Catboost can be used in ranking , recommendation systems,forecasting and even personal assistants, self-driving cars , and weather prediction .
 
 
-
-
 *** Pros: ***
 1. It can train our model on GPUs that significantly increase the speed of learning.
 2. It gives us great results for categorical data.
+3. CatBoost implements oblivious decision trees (binary tree in which same features are used to make left and right split for each level of the tree) thereby restricting the features split per level to one, which help in decreasing prediction time.
+
 **Cons:**
 1. It performs only better than other algorithms only when we have categorical data
 2. Can perform very bad if the variables are not properly tuned
+
+*** Categorical features processing in CatBoost***
+1.Permutation of the training objects in random order.
+2.Quantization i.e. converting the target value from a floating-point to an integer depending on the task type:
+>Classification — Possible values for target value are “0” (doesn’t belong to the specified target class) and “1” (belongs to the specified target class).
+>Multiclassification — The target values are integer identifiers of target classes (starting from “0”).
+>Regression — Quantization is performed on the label value. The mode and number of buckets are set in the starting parameters. All values located inside a single bucket are assigned a label value class — an integer in the range defined by the formula: <bucket ID — 1>.
+3. Encoding the categorical feature values.
+
+CatBoost creates four permutations of the training objects and for each permutation, a separate model is trained. Three models are used for the tree structure selection and the fourth is used to compute the leaves values of the final model that we save. At each iteration one of the three models is chosen randomly; this mod
+
+
 ***Application of Cat Boost :***
 1 - Weather forecasting: CatBoost improves the accuracy of weather forecasting and also helps in discovering future meteorological elements. We mean temperature, wind, humidity, and many more by accurately forecasting meteorological factors. These features are very critical and are used in many fields.
 2 - Fraud detection: this includes a set of processes that helps to prevent unauthorised access in various business sectors. The sectors include banking, finance, Medicare, etc.
