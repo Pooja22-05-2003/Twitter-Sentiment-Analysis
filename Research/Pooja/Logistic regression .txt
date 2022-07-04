@@ -1,0 +1,28 @@
+﻿LOGISTIC REGRESSION
+
+
+*** What is logistic regression?
+
+
+Logistic regression is an example of supervised learning. It is used to calculate or predict the probability of a binary (yes/no) event occurring. An example of logistic regression could be applying machine learning to determine if a person is likely to be infected with COVID-19 or not.
+*** Pros: ***
+1. Logistic regression is easier to implement , interpret , and very efficient to train. It makes no assumption about distribution of classes in feature space.
+2. It can easily extend to multiple classes(multinomial regression) and a natural probabilistic view of class prediction.
+3. It not only provides a measure of how appropriate a predictor (coefficient size)is but also its direction of  association (positive or negative ).
+4. Good accuracy of many simple data sets and it performs well when the dataset is linearly separable.
+**Cons:**
+1. If the number of observations is lesser than the number of features , Logistic Regression should not be used, otherwise , it may lead to overfitting. And It constructs linear boundaries.
+2. The major limitation of Logistic Regression is the assumption of linearity between the dependent variable and the independent variable.
+3. It can only be used to predict discrete functions. Hence , the dependent variable of Logistic Regression is bound to the discrete number set.
+4. Logistic Regression requires average or no multicollinearity between independent variables.
+***Application of Logistic Algorithm:***
+* In health care, logistic regression can be used to predict if a tumour is likely to be benign or malignant.
+* In the financial industry, logistic regression can be used to predict if a transaction is fraudulent or not.
+* In marketing, logistic regression can be used to predict if a targeted audience will respond or not.
+
+
+***Types of Logistic regression***
+1. Binary logistic regression - When we have two possible outcomes, like our original example of whether a person is likely to be infected with COVID-19 or not.
+2. Multinomial logistic regression - When we have multiple outcomes, say if we build out our original example to predict whether someone may have the flu, an allergy, a cold, or COVID-19.
+3. Ordinal logistic regression - When the outcome is ordered, like if we build out our original example to also help determine the severity of a COVID-19 infection, sorting it into mild, moderate, and severe cases.
+4.
