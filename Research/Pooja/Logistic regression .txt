@@ -25,4 +25,3 @@ Logistic regression is an example of supervised learning. It is used to calculat
 1. Binary logistic regression - When we have two possible outcomes, like our original example of whether a person is likely to be infected with COVID-19 or not.
 2. Multinomial logistic regression - When we have multiple outcomes, say if we build out our original example to predict whether someone may have the flu, an allergy, a cold, or COVID-19.
 3. Ordinal logistic regression - When the outcome is ordered, like if we build out our original example to also help determine the severity of a COVID-19 infection, sorting it into mild, moderate, and severe cases.
-4.
