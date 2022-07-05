@@ -1,0 +1,76 @@
+Trajectory of work:
+
+1)Working on a text classification problem(Use Case)
+2)Refining your training data(Tasks in Hand for the training of ur model)
+3)maybe you’ve even experimented with Naive Bayes
+4)You’re feeling confident in your dataset
+5)Want to take it one step further.(To improve the accuracy perhaps)
+
+Solution:
+
+Enter Support Vector Machines (SVM), a fast and 
+dependable classification algorithm that performs 
+very well with a limited amount of data to analyze.
+
+Prerequistes:
+
+Perhaps you have dug a bit deeper, and ran into terms like linearly separable, kernel trick and kernel functions. 
+Define the terms: 
+linearly separable-
+kernel trick-
+kernel functions-
+But fear not! The idea behind the SVM algorithm is simple, and applying it to NLP doesn’t require most of the complicated stuff.
+
+SVM:
+
+A support vector machine (SVM) 
+-> is a supervised machine learning model 
+-> that uses classification algorithms 
+-> for two-group classification problems.
+
+After giving an SVM model sets of labeled training data for each category, they’re able to categorize new text.
+
+Advantages:
+Compared to newer algorithms like neural networks, they have two main advantages: 
+-> higher speed 
+-> better performance 
+-> with a limited number of samples (in the thousands). This makes the algorithm very suitable for text classification problems, where it’s common to have access to a dataset of at most a couple of thousands of tagged samples.
+
+Example to understand SVM:
+
+Let’s imagine 
+-> we have two tags: red and blue
+-> and our data has two features: x and y. 
+-> We want a classifier that, given a pair of (x,y) coordinates, outputs if it’s either red or blue. 
+We plot our already labeled training data on a plane: img1
+
+A support vector machine takes these data points and outputs the hyperplane 
+(which in two dimensions it’s simply a line) that best separates the tags. 
+This line is the decision boundary: 
+anything that falls to one side of it we will classify as blue, 
+and anything that falls to the other as red.
+
+But, what exactly is the best hyperplane? For SVM, 
+it’s the one that maximizes the margins from both tags. 
+In other words: 
+the hyperplane (remember it's a line in this case) whose distance to the nearest element of each tag is the largest.
+
+Note: Not all hyperplanes are created equal
+
+reference link: https://www.youtube.com/watch?v=1NxnPkZM9bc
+
+Types of SVM : linear and non linear depending on the dataset in Hand
+
+Now this example was easy, since clearly the data was linearly separable — we could draw a straight line to separate red and blue. 
+Sadly, usually things aren’t that simple. Take a look at this case: img2
+
+It’s pretty clear that there’s not a linear decision boundary (a single straight line that separates both tags). 
+However, the vectors are very clearly segregated and it looks as though it should be easy to separate them.
+
+So here’s what we’ll do: we will add a third dimension. Up until now we had two dimensions: x and y. 
+We create a new z dimension, and we rule that it be calculated a certain way that is convenient for us:
+ z = x² + y² (you’ll notice that’s the equation for a circle).
+
+ Check out this 3d visualization to see another example of the same effect: https://youtu.be/3liCbRZPrZA
+
+ 
