@@ -130,3 +130,8 @@ Gamma values : It tells us how much will be the influence of the individual data
 Therefore, decision boundary becomes non-linear leading to overfitting
 – Small Gamma: More data points will influence the decision boundary. 
 Therefore, the decision boundary is more generic.
+
+Support Vector Machine deals with nonlinear data by transforming it into a higher dimension where it is linearly separable. 
+Support Vector Machine does so by using different values of Kernel. 
+We have various options available with kernel like, ‘linear’, “rbf”, ”poly” and others (default value is “rbf”). 
+Here “rbf” and “poly” are useful for non-linear hyper-plane.
