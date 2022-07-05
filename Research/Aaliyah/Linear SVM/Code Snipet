@@ -1,0 +1,13 @@
+def decision_boundary(X,y,model,res,test_idx=None):
+    markers=['s','o','x']
+    colors = ('red', 'blue', 'lightgreen', 'gray', 'cyan')
+    colormap=ListedColormap(colors[:len(np.unique(y))])
+    x_min,x_max=X[:,0].min()-1,X[:,0].max()+1
+    y_min,y_max=X[:,1].min()-1,X[:,1].max()+1
+    xx,yy=np.meshgrid(np.arange(x_min,x_max,res),np.arange(y_min,y_max,res))
+    z=model.predict(np.c_[xx.ravel(), yy.ravel()])
+    zz=z.reshape(xx.shape)
+    plt.pcolormesh(xx,yy,zz,cmap=colormap)
+
+    for idx,cl in enumerate(np.unique(y)):
+        plt.scatter(X[y==cl,0],X[y==cl,1],c=colors[idx],cmap=plt.cm.Paired, edgecolors='k',marker=markers[idx],label=cl,alpha=0.8)

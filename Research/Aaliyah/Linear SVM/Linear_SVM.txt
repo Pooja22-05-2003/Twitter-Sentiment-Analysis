@@ -73,4 +73,60 @@ We create a new z dimension, and we rule that it be calculated a certain way tha
 
  Check out this 3d visualization to see another example of the same effect: https://youtu.be/3liCbRZPrZA
 
+ For the understanding of the implementation of optimal hyperplane we need to understand the mathematical model which runs in its backend 
+ using this we will also be able to hard-code the linear-SVM (refer img3)
+
+Points to note from the above Figure:
+a. We can clearly see that SVM tries to maximize the margins and thus called Maximum Margin Classifier.
+
+b. The Support Vectors will have values exactly either {+1, -1}.
+
+c. The more negative the values are for the Green data points the better it is for classification.
+
+d. The more positive the values are for the Red data points the better it is for classification
+
+ How to choose the Correct SVM:
+
+ Suppose we are given 2 Hyperplane one with 100% accuracy (HP1) on the left side and another with >90% accuracy (HP2) on the right side. 
  
+ Which one would you think is the correct classifier?
+
+Most of us would pick the HP2 thinking that it because of the maximum margin. But it is the wrong answer.
+
+But Support Vector Machine would choose the HP1 though it has a narrow margin. 
+Because though HP2 has maximum margin but it is going against the constrain that: 
+each data point must lie on the correct side of the margin and there should be no misclassification. 
+This constrain is the hard constrain that Support Vector Machine follows throughout.
+
+This brings us to the discussion about Hard and Soft SVM.
+We can now clearly state that HP1 is a Hard SVM(left side) while HP2 is a Soft SVM(right side).
+By default, Support Vector Machine implements Hard margin SVM. It works well only if our data is linearly separable.
+Hard margin SVM does not allow any misclassification to happen.
+In case our data is non-separable/ nonlinear then the Hard margin SVM will not return any hyperplane as it will not be able to separate the data. Hence this is where Soft Margin SVM comes to the rescue.
+Soft margin SVM allows some misclassification to happen by relaxing the hard constraints of Support Vector Machine.
+Soft margin SVM is implemented with the help of the Regularization parameter (C).
+
+Regularization parameter (C): It tells us how much misclassification we want to avoid.
+
+– Hard margin SVM generally has large values of C.
+– Soft margin SVM generally has small values of C.
+
+
+Relation between Regularization parameter (C) and SVM:
+
+Now that we know what the Regularization parameter (C) does. We need to understand its relation with Support Vector Machine.
+
+Notes::
+
+– As the value of C increases the margin decreases thus Hard SVM.
+
+– If the values of C are very small the margin increases thus Soft SVM.
+
+– Large value of C can cause overfitting therefore we need to select the correct value using Hyperparameter Tuning.
+
+Gamma values : It tells us how much will be the influence of the individual data points on the decision boundary.
+
+– Large Gamma: Fewer data points will influence the decision boundary. 
+Therefore, decision boundary becomes non-linear leading to overfitting
+– Small Gamma: More data points will influence the decision boundary. 
+Therefore, the decision boundary is more generic.
