@@ -1,0 +1,118 @@
+***** What is boosting? *****
+
+While studying machine learning you must have come across this term called Boosting. It is the most misinterpreted term in the field of Data Science. The principle behind boosting algorithms is first we built a model on the training dataset, then a second model is built to rectify the errors present in the first model. Let me try to explain to you what exactly does this means and how does this works.
+
+Suppose you have n data points and 2 output classes (0 and 1). You want to create a model to detect the class of the test data. Now what we do is randomly select observations from the training dataset and feed them to model 1 (M1), we also assume that initially, all the observations have an equal weight that means an equal probability of getting selected.
+
+Remember in ensembling techniques the weak learners combine to make a strong model so here M1, M2, M3….Mn all are weak learners.
+
+Since M1 is a weak learner, it will surely misclassify some of the observations. Now before feeding the observations to M2 what we do is update the weights of the observations which are wrongly classified. You can think of it as a bag that initially contains 10 different color balls but after some time some kid takes out his favorite color ball and put 4 red color balls instead inside the bag. Now off-course the probability of selecting a red ball is higher. This same phenomenon happens in Boosting techniques, when an observation is wrongly classified, its weight get’s updated and for those which are correctly classified, their weights get decreased. The probability of selecting a wrongly classified observation gets increased hence in the next model only those observations get selected which were misclassified in model 1.
+
+Similarly, it happens with M2, the wrongly classified weights are again updated and then fed to M3. This procedure is continued until and unless the errors are minimized, and the dataset is predicted correctly. Now when the new datapoint comes in (Test data) it passes through all the models (weak learners) and the class which gets the highest vote is the output for our test data.
+
+***** What is a Gradient boosting Algorithm? ******
+
+The main idea behind this algorithm is to build models sequentially and these subsequent models try to reduce the errors of the previous model. But how do we do that? How do we reduce the error? This is done by building a new model on the errors or residuals of the previous model.
+
+When the target column is continuous, we use Gradient Boosting Regressor whereas when it is a classification problem, we use Gradient Boosting Classifier. The only difference between the two is the “Loss function”. The objective here is to minimize this loss function by adding weak learners using gradient descent. Since it is based on loss function hence for regression problems, we’ll have different loss functions like Mean squared error (MSE) and for classification, we will have different for e.g log-likelihood.
+
+WHAT ARE LOSS FUNCTIONS IN MACHINE LEARNING?
+The loss function is a method of evaluating how well your machine learning algorithm models your featured data set. In other words, loss functions are a measurement of how good your model is in terms of predicting the expected outcome.
+
+Loss Functions
+Broadly speaking, loss functions can be grouped into two major categories concerning the types of problems we come across in the real world: classification and regression. In classification problems, our task is to predict the respective probabilities of all classes the problem is dealing with. On the other hand, when it comes to regression, our task is to predict the continuous value concerning a given set of independent features to the learning algorithm.
+
+**** Classification Losses ****
+
+-----> Hinge Loss/Multi class SVM Loss
+
+In simple terms, the score of correct category should be greater than sum of scores of all incorrect categories by some safety margin (usually one). And hence hinge loss is used for maximum-margin classification, most notably for support vector machines. Although not differentiable, it’s a convex function which makes it easy to work with usual convex optimizers used in machine learning domain.
+
+(hinge loss.png)
+sj = score of incorrect category
+syi = score of correct category
+
+# 1st training example
+max(0, (1.49) - (-0.39) + 1) + max(0, (4.21) - (-0.39) + 1)
+max(0, 2.88) + max(0, 5.6)
+2.88 + 5.6
+8.48 (High loss as very wrong prediction)
+## 2nd training example
+max(0, (-4.61) - (3.28)+ 1) + max(0, (1.46) - (3.28)+ 1)
+max(0, -6.89) + max(0, -0.82)
+0 + 0
+0 (Zero loss as correct prediction)
+## 3rd training example
+max(0, (1.03) - (-2.27)+ 1) + max(0, (-2.37) - (-2.27)+ 1)
+max(0, 4.3) + max(0, 0.9)
+4.3 + 0.9
+5.2 (High loss as very wrong prediction)
+
+------> Cross Entropy Loss/Negative Log Likelihood
+
+This is the most common setting for classification problems. Cross-entropy loss increases as the predicted probability diverges from the actual label.
+
+Mathematical formulation :- (cross entropy loss.png)
+
+Notice that when actual label is 1 (y(i) = 1), second half of function disappears whereas in case actual label is 0 (y(i) = 0) first half is dropped off. In short, we are just multiplying the log of the actual predicted probability for the ground truth class. An important aspect of this is that cross entropy loss penalizes heavily the predictions that are confident but wrong.
+
+import numpy as np
+predictions = np.array([[0.25,0.25,0.25,0.25],
+                        [0.01,0.01,0.01,0.96]])
+targets = np.array([[0,0,0,1],
+                   [0,0,0,1]])
+def cross_entropy(predictions, targets, epsilon=1e-10):
+    predictions = np.clip(predictions, epsilon, 1. - epsilon)
+    N = predictions.shape[0]
+    ce_loss = -np.sum(np.sum(targets * np.log(predictions + 1e-5)))/N
+    return ce_loss
+cross_entropy_loss = cross_entropy(predictions, targets)
+print ("Cross entropy loss is: " + str(cross_entropy_loss))
+
+
+-----> Step -1 The first step in gradient boosting is to build a base model to predict the observations in the training dataset. For simplicity we take an average of the target column and assume that to be the predicted value as shown below:
+(dataset(GBR)2.png)
+
+Why did I say we take the average of the target column? Well, there is math involved behind this. Mathematically the first step can be written as: (f1.png)
+
+Looking at this may give you a headache, but don’t worry we will try to understand what is written here.
+
+Here L is our loss function
+
+Gamma is our predicted value
+
+argmin means we have to find a predicted value/gamma for which the loss function is minimum.
+
+Since the target column is continuous our loss function will be: (f2.png)
+
+-----> Mean Square Error (MSE)
+As the name suggests, Mean square error is measured as the average of squared difference between predictions and actual observations. It’s only concerned with the average magnitude of error irrespective of their direction. However, due to squaring, predictions which are far away from actual values are penalized heavily in comparison to less deviated predictions. Plus MSE has nice mathematical properties which makes it easier to calculate gradients.
+
+Here yi is the observed value
+
+And gamma is the predicted value
+
+Now we need to find a minimum value of gamma such that this loss function is minimum. We all have studied how to find minima and maxima in our 12th grade. Did we use to differentiate this loss function and then put it equal to 0 right? Yes, we will do the same here.
+
+We end up over an average of the observed car price and this is why I asked you to take the average of the target column and assume it to be your first prediction.
+
+Hence for gamma=14500, the loss function will be minimum so this value will become our prediction for the base model.
+
+------> Step-2 The next step is to calculate the pseudo residuals which are (observed value – predicted value)
+Again the question comes why only observed – predicted? Everything is mathematically proved, let’s from where did this formula come from. This step can be written as: (f3.png)
+Here F(xi) is the previous model and m is the number of DT made.
+
+We are just taking the derivative of loss function w.r.t the predicted value and we have already calculated this derivative: (f4.png)
+If you see the formula of residuals above, we see that the derivative of the loss function is multiplied by a negative sign, so now we get: (observed - predictive)
+
+The predicted value here is the prediction made by the previous model. In our example the prediction made by the previous model (initial base model prediction) is 14500, to calculate the residuals our formula becomes: (observed - 14500)
+
+In the next step, we will build a model on these pseudo residuals and make predictions. Why do we do this? Because we want to minimize these residuals and minimizing the residuals will eventually improve our model accuracy and prediction power. So, using the Residual as target and the original feature Cylinder number, cylinder height, and Engine location we will generate new predictions. Note that the predictions, in this case, will be the error values, not the predicted car price values since our target column is an error now.
+
+Let’s say hm(x) is our DT made on these residuals.
+
+-------> Step- 4 In this step we find the output values for each leaf of our decision tree. That means there might be a case where 1 leaf gets more than 1 residual, hence we need to find the final output of all the leaves. TO find the output we can simply take the average of all the numbers in a leaf, doesn’t matter if there is only 1 number or more than 1.
+
+Let’s see why do we take the average of all the numbers. Mathematically this step can be represented as: (f5.png)
+
+
