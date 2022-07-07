@@ -1,6 +1,8 @@
 from re import *
+from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk.stem import WordNetLemmatizer
 from nltk import download
+download()
 download('stopwords')
 download('wordnet')
 from nltk.corpus import stopwords
@@ -83,3 +85,10 @@ def preprocess(textdata):
         processedText.append(tweetwords)
         
     return processedText
+
+def vectorizes(X_train, X_test):
+    vectoriser = TfidfVectorizer(ngram_range=(1,2),stop_words = stopwordlist, strip_accents = 'unicode', max_features = 500000)
+    vectoriser.fit(X_train) #fit the training data
+    print(f'Vectoriser fitted.')
+    print('No. of feature_words: ', len(vectoriser.get_feature_names()))
+    return vectoriser.transform(X_train), vectoriser.transform(X_test)
