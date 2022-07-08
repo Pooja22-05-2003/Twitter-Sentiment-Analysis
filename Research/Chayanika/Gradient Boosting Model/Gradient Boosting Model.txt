@@ -116,3 +116,11 @@ Let’s say hm(x) is our DT made on these residuals.
 Let’s see why do we take the average of all the numbers. Mathematically this step can be represented as: (f5.png)
 
 
+
+Impurity and Purity
+a b c label
+1 2 3 true
+1 2 4 true
+2 2 3 true
+1 3 4 false
+2 3 5 false
