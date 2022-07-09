@@ -2,7 +2,7 @@ from re import *
 from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk.stem import WordNetLemmatizer
 from nltk import download
-download()
+# download()
 download('stopwords')
 download('wordnet')
 from nltk.corpus import stopwords
@@ -91,4 +91,5 @@ def vectorizes(X_train, X_test):
     vectoriser.fit(X_train) #fit the training data
     print(f'Vectoriser fitted.')
     print('No. of feature_words: ', len(vectoriser.get_feature_names()))
+    print('First Fifty Words: ', vectoriser.get_feature_names()[:50])
     return vectoriser.transform(X_train), vectoriser.transform(X_test)
