@@ -1,0 +1,44 @@
+Sentiment Analysis
+
+What is sentiment analysis, it is primarily the way through which the emotion within a text can be interpreted and hence classified. Thus, in the machine learning terms we can say that it is a classification problem for which the output is going to be discrete values.
+Here, in the case of Twitter Sentiment Analysis, we are going to analysis the text and interpret whether the emotion underlying is Positive, Negative or Neutral.
+
+Since we are dealing with textual data,
+Therefore NLP will be used for the same
+Natural Language Processing (NLP): 
+-> The discipline of computer science, artificial intelligence and linguistics 
+-> concerned with the creation of computational models that process and understand natural language. These include: making the computer understand the semantic grouping of words (e.g. cat and dog are semantically more similar than cat and spoon), text to speech, language translation and many more.
+
+Since we are dealing with two types of output(positive or negative )  and our data is not-skewed,
+Therefore 
+We will use 3 very popular Classification Algorithms:
+1.BernoulliNB Model
+-> Naive Bayes is a supervised machine learning algorithm to predict the probability of different classes based on numerous attributes. 
+-> It indicates the likelihood of occurrence of an event. 
+-> Naive Bayes is also known as conditional probability. 
+-> Naive Bayes is based on the Bayes Theorem.
+-> Bernoulli Naive Bayes is a part of the Naive Bayes family. It is based on the Bernoulli Distribution and accepts only binary values, i.e., 0 or 1. 
+-> If the features of the dataset are binary, then we can assume that Bernoulli Naive Bayes is the algorithm to be used. 
+Advantages->In case of small amount of data or small documents(for example in text classification), Bernoulli Naive Bayes gives more accurate and precise results as compared to other models.
+          -> It is fast 
+          -> are able to make to make real-time predictions. 
+          ->It can handle irrelevant features nicely.
+2.Linear Support Vector Machine Model
+A support vector machine (SVM) 
+-> is a supervised machine learning model based on the concept of a hyperplane
+-> that uses classification algorithms 
+-> for two-group classification problems.
+
+After giving an SVM model sets of labeled training data for each category, they’re able to categorize new text.
+
+Advantages:
+Compared to newer algorithms like neural networks, they have two main advantages: 
+-> higher speed 
+-> better performance 
+-> with a limited number of samples (in the thousands). This makes the algorithm very suitable for text classification problems, where it’s common to have access to a dataset of at most a couple of thousands of tagged samples.
+3.Logistic Regression Model
+Logistic regression is a process of modeling the probability of a discrete outcome given an input variable. 
+The most common logistic regression models a binary outcome; something that can take two values such as true/false, yes/no, and so on. 
+Logistic regression makes use of the sigmoid function which outputs a probability between 0 and 1. 
+The sigmoid function with some weight parameter θ and some input x^{(i)}x(i) is defined as follows:-h(x^(i), θ) = 1/(1 + e^(-θ^T*x^(i)).
+The sigmoid function gives values between -1 and 1 hence we can classify the predictions depending on a particular cutoff.
