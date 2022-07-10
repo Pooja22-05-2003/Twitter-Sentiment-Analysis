@@ -48,12 +48,5 @@ def model_evaluate(model,X_test,y_test,font):
     # df_f1['class']=df_f1['class'].astype('float')
     df_f1['f1 score']=df_f1['f1 score'].astype('float')
     
-    plt.figure(figsize=(10,5))
-    plt.title('f1_score',fontdict=font,pad=40)
-    plt.xticks(fontsize=16)
-    plt.yticks(fontsize=16)
-    sns.heatmap(df_f1,annot=True,annot_kws={'fontdict':font},robust=True)
-    plt.show()
-    
-    return acc
+    return acc, df_f1
 
