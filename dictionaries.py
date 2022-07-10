@@ -6,6 +6,7 @@ from nltk import download
 download('stopwords')
 download('wordnet')
 from nltk.corpus import stopwords
+import pandas as pd
 
 
 emojis = {':)': 'smile', ':-)': 'smile', ';d': 'wink', ':-E': 'vampire', ':(': 'sad', 
@@ -16,7 +17,7 @@ emojis = {':)': 'smile', ':-)': 'smile', ';d': 'wink', ':-E': 'vampire', ':(': '
           '<(-_-)>': 'robot', 'd[-_-]b': 'dj', ":'-)": 'sadsmile', ';)': 'wink', 
           ';-)': 'wink', 'O:-)': 'angel','O*-)': 'angel','(:-D': 'gossip', '=^.^=': 'cat'}
 
-mystopwordlist = ['a', 'about', 'above', 'after', 'again', 'ain', 'all', 'am', 'an',
+stopwordsList = ['a', 'about', 'above', 'after', 'again', 'ain', 'all', 'am', 'an',
              'and','any','are', 'as', 'at', 'be', 'because', 'been', 'before',
              'being', 'below', 'between','both', 'by', 'can', 'd', 'did', 'do',
              'does', 'doing', 'down', 'during', 'each','few', 'for', 'from', 
@@ -34,7 +35,7 @@ mystopwordlist = ['a', 'about', 'above', 'after', 'again', 'ain', 'all', 'am', '
              "youve", 'your', 'yours', 'yourself', 'yourselves']
 
 english_stop_words =  stopwords.words('english')
-stopwordlist = stopwords.words('english') + mystopwordlist
+stopwordlist = stopwords.words('english') + stopwordsList
 
 def preprocess(textdata):
     processedText = []
@@ -42,7 +43,7 @@ def preprocess(textdata):
     #creating a Lemmatizer
     wordLemma = WordNetLemmatizer() #define the imported library
     
-    # Defining regular expression pattern we can find. in tweets
+    # Regular Expressions fo replacements to be done
     
     urlPattern        = r"((http://)[^ ]*|(https://)[^ ]*|( www\.)[^ ]*)" # e.g check out https://dot.com for more
     userPattern       = '@[^\s]+' # e.g @FagbamigbeK check this out
@@ -92,4 +93,17 @@ def vectorizes(X_train, X_test):
     print(f'Vectoriser fitted.')
     print('No. of feature_words: ', len(vectoriser.get_feature_names()))
     print('First Fifty Words: ', vectoriser.get_feature_names()[:50])
-    return vectoriser.transform(X_train), vectoriser.transform(X_test)
+    return vectoriser,vectoriser.transform(X_train), vectoriser.transform(X_test)
+
+def predict(vectoriser,model, text):
+    textdata = vectoriser.transform(preprocess(text))
+    sentiment = model.predict(textdata)
+    
+    # Make a list of text with sentiment.
+    data = []
+    for text, pred in zip(text, sentiment):
+        data.append((text,pred))
+        
+    df = pd.DataFrame(data, columns = ['text','sentiment'])
+    df = df.replace([0,1], ["Negative","Positive"])
+    return df

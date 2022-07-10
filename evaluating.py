@@ -7,7 +7,7 @@ from sklearn.metrics import accuracy_score
 
 plt.style.use('dark_background')
 
-def model_evaluate(model,X_test,y_test,font):
+def EvaluatingModel(model,X_test,y_test,font):
     
     # Predict values for Test dataset
     y_pred = model.predict(X_test) #Xtest is not used in model training
@@ -26,7 +26,7 @@ def model_evaluate(model,X_test,y_test,font):
     labels = [f'{v1}\n{v2}' for v1, v2 in zip(group_names,group_percentages)]
     labels = np.asarray(labels).reshape(2,2)
 
-    sns.heatmap(cf_matrix, annot = labels, cmap = 'Blues',fmt = '',
+    sns.heatmap(cf_matrix, annot = labels, cmap = 'PiYG',fmt = '',
                 xticklabels = categories, yticklabels = categories)
 
     plt.xlabel("Predicted values", fontdict = {'size':14}, labelpad = 10)

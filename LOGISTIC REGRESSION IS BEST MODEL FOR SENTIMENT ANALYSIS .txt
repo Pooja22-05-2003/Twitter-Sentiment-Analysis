@@ -1,0 +1,18 @@
+﻿LOGISTIC REGRESSION IS BEST MODEL FOR SENTIMENT ANALYSIS BECAUSE: 
+* Sentiment analysis is an NLP technique that allows us to classify if a text, tweet or comment is either positive, neutral or negative.
+* From the above accuracy results, we can see that the Logistic Regression algorithm has performed relatively well as compared to the Naive Bayes algorithm. This can be due to the fact that the Logistic Regression algorithm doesn’t make as many assumptions as that of the Naive Bayes algorithm.
+* Logistic regression is a good model because it trains quickly even on large datasets and provides very robust results. Other good model choices include SVMs, Random Forests, and Naive Bayes.
+
+
+* It offers the direction of association (positive or negative)
+* Doesn't make any assumptions about the distribution of classes, Less prone to overfitting in low dimensional datasets
+* Logistic regression is Simple to understand, easy to implement, and efficient to train
+
+
+* Logistic regression is useful for this as it uses a sigmoid function to output a probability between zero and one.
+
+
+Y = 1 / 1+e -z  (sigmoid function)
+
+
+* Logistic regression is a supervised machine learning technique for classification problems.The goal of the model is to learn and approximate a mapping function f(Xi) = Y from input variables {x1, x2, xn} to output variable(Y).
