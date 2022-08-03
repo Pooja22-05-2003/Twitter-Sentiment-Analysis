@@ -7,11 +7,12 @@ from sklearn.metrics import accuracy_score
 
 plt.style.use('dark_background')
 
-def EvaluatingModel(model,X_test,y_test,font):
+def EvaluatingModel(model,X_train, y_train,X_test,y_test,font,name):
     
     # Predict values for Test dataset
     y_pred = model.predict(X_test) #Xtest is not used in model training
-    acc = accuracy_score(y_test, y_pred)*100
+    atrain = 100*model.score(X_train, y_train)
+    atest = 100*model.score(X_test, y_test)
     # Print the evaluation metrics for the dataset.
     cr = classification_report(y_test, y_pred)
     print(cr)
@@ -25,13 +26,17 @@ def EvaluatingModel(model,X_test,y_test,font):
 
     labels = [f'{v1}\n{v2}' for v1, v2 in zip(group_names,group_percentages)]
     labels = np.asarray(labels).reshape(2,2)
-
+    
+    fig = plt.figure(figsize=(10, 5))
     sns.heatmap(cf_matrix, annot = labels, cmap = 'PiYG',fmt = '',
-                xticklabels = categories, yticklabels = categories)
-
-    plt.xlabel("Predicted values", fontdict = {'size':14}, labelpad = 10)
-    plt.ylabel("Actual values"   , fontdict = {'size':14}, labelpad = 10)
-    plt.title ("Confusion Matrix", fontdict = {'size':18}, pad = 20)
+                xticklabels = categories, yticklabels = categories, annot_kws={"fontsize":30})
+    # sns.set(font_scale=1.4)
+    plt.xlabel("Predicted values", fontdict = {'size':24}, labelpad = 10)
+    plt.ylabel("Actual values"   , fontdict = {'size':24}, labelpad = 10)
+    plt.title ("Confusion Matrix", fontdict = {'size':24}, pad = 20)
+    plt.xticks(fontsize=24)
+    plt.yticks(fontsize=24)
+    plt.savefig(r"C:\Users\asus\Desktop\AI-ML_Month_Major_Project\Confusion Matrices\{}".format(name), bbox_inches='tight')
     plt.show()
     
     l = cr.split('\n')
@@ -48,5 +53,5 @@ def EvaluatingModel(model,X_test,y_test,font):
     # df_f1['class']=df_f1['class'].astype('float')
     df_f1['f1 score']=df_f1['f1 score'].astype('float')
     
-    return acc, df_f1
+    return atrain,atest, df_f1
 
